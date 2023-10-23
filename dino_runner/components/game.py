@@ -1,10 +1,10 @@
 import pygame
+import os
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
-
-FONT_STYLE = "freesansbold.ttf"
+from dino_runner.utils.Text_types import draw_message_component
 
 
 class Game:
@@ -22,6 +22,12 @@ class Game:
         self.score = 0
         self.death_count = 0
 
+        if os.path.exists('HighScore.txt'):
+            with open('HighScore.txt', 'r') as file:
+                self.high_score = int(file.read())
+        else:
+            self.high_score = 0
+
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
 
@@ -38,6 +44,8 @@ class Game:
         # Game loop: events - update - draw
         self.playing = True
         self.obstacle_manager.reset_obstacles()
+        self.score = 0
+        self.game_speed = 20
         while self.playing:
             self.events()
             self.update()
@@ -47,7 +55,12 @@ class Game:
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                if self.score > self.high_score:
+                    self.high_score = self.score
+                    with open('HighScore.txt', 'w') as file:
+                        file.write(str(self.high_score))
                 self.playing = False
+                
 
     def update(self):
         user_input = pygame.key.get_pressed()
@@ -66,6 +79,7 @@ class Game:
         self.draw_background()  
         self.draw_score()
         self.draw_background()
+        self.draw_high_score()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         pygame.display.update()
@@ -81,11 +95,20 @@ class Game:
         self.x_pos_bg -= self.game_speed
 
     def draw_score(self):
-        font = pygame.font.Font(FONT_STYLE, 22)
-        text = font.render(f"Score: {self.score}", True, (0, 0, 0))
-        text_rect = text.get_rect()
-        text_rect.center = (1000, 50)
-        self.screen.blit(text, text_rect)    
+        draw_message_component(
+            f"Score: {self.score}",
+            self.screen,
+            pos_x_center=1000,
+            pos_y_center=50
+        )
+        
+    def draw_high_score(self):
+        draw_message_component(
+            f"High Score: {self.high_score}",
+            self.screen,
+            pos_x_center = 1000,
+            pos_y_center = 25
+        )
 
     def handle_events_on_menu(self):
         for event in pygame.event.get():
@@ -101,19 +124,30 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:        
-            font = pygame.font.Font(FONT_STYLE, 22)
-            text = font.render("Press any key to start", True, (0, 0, 0))
-            text_rect = text.get_rect()
-            text_rect.center = (half_screen_width, half_screen_height)
-            self.screen.blit(text, text_rect)
-        else:
-            self.screen.blit(ICON, (half_screen_width - 20, half_screen_height - 140))
-            ## mostrar mensagem de 'Press any key to restar'
-            ## mostrar score atingido
-            ## mostrar death_count
+            draw_message_component("Press any key to start", self.screen)
+        else: 
+            draw_message_component("Press any key to restart", self.screen, pos_y_center=half_screen_height + 140)
+            draw_message_component(
+                f"Your Score: {self.score}",
+                self.screen,
+                pos_y_center=half_screen_height - 150
+            )
+            draw_message_component(
+                f"Your high score: {self.high_score}",
+                self.screen, 
+                pos_y_center=half_screen_height - 125)
+            draw_message_component(
+                f"Death count: {self.death_count}",
+                self.screen,
+                pos_y_center=half_screen_height - 100
+            )
+            self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 40))
+            
+            if self.score > self.high_score:
+                self.high_score = self.score
+                with open('HighScore.txt', 'w') as file:
+                    file.write(str(self.high_score))
 
-            ### Resetar score e game_speed quando reiniciar uma nova rodada do jogo
-            ### Criar método para remover a repetição de código para o texto
 
         pygame.display.update()
 
