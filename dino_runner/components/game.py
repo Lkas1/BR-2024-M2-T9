@@ -1,7 +1,7 @@
 import pygame
 import os
 
-from dino_runner.utils.constants import BG, MOON, CLOUD, CLOUD2, GROUND, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, MOON, CLOUD, CLOUD2, GROUND, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE 
 from dino_runner.utils.sound_constants import BG_MUSIC, MENU_MUSIC, GAMEOVER_MUSIC, BEEP
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager

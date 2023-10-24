@@ -71,12 +71,6 @@ MOON = pygame.image.load(os.path.join(IMG_DIR, 'Background/moon.png'))
 CLOUD2 = pygame.image.load(os.path.join(IMG_DIR, 'Background/cloud2.png'))
 GROUND = pygame.image.load(os.path.join(IMG_DIR, 'Background/ground.png'))
 
-#BG_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/BackgroundMusic.ogg')
-#GAMEOVER_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/GameOver.ogg')
-#MENU_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/MenuMusic.ogg')
-#BEEP = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/Beep.ogg')
-#JUMP_SOUND = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/JumpSound.ogg')
-
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 HOURGLASS = pygame.image.load(os.path.join(IMG_DIR, 'Other/hourglass.png'))
