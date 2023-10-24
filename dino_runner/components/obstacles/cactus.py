@@ -4,8 +4,8 @@ from dino_runner.components.obstacles.obstacle import Obstacle
 from dino_runner.utils.constants import SMALL_CACTUS, LARGE_CACTUS
 
 CACTUS = [
-    (SMALL_CACTUS, 325),
-    (LARGE_CACTUS, 300),
+    (SMALL_CACTUS, 345),
+    (LARGE_CACTUS, 320),
 ]
 class Cactus(Obstacle):
     def __init__(self):

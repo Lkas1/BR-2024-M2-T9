@@ -3,7 +3,7 @@ import random
 
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
-
+from dino_runner.utils.constants import HAMMER_TYPE, HOURGLASS_TYPE
 
 class ObstacleManager:
     def __init__(self):
@@ -25,8 +25,15 @@ class ObstacleManager:
                     game.playing = False
                     game.death_count += 1
                     break
-                else:
+                elif game.player.has_power_up and game.player.type == HAMMER_TYPE:
                     self.obstacles.remove(obstacle)
+                elif game.player.has_power_up and game.player.type == HOURGLASS_TYPE:
+                    pygame.time.delay(500)
+                    game.playing = False
+                    game.death_count += 1
+                    break     
+                else:
+                    game.playing = True
 
     def reset_obstacles(self):
         self.obstacles = []

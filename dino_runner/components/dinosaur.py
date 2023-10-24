@@ -1,16 +1,17 @@
 import pygame
 from pygame.sprite import Sprite
 
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD
+from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD, HAMMER_TYPE, DUCKING_HAMMER, JUMPING_HAMMER, RUNNING_HAMMER, HOURGLASS_TYPE
+from dino_runner.utils.sound_constants import JUMP_SOUND
 
 X_POS = 80
-Y_POS = 310
-Y_DUCK_POS = 340
+Y_POS = 320
+Y_DUCK_POS = 355
 JUMP_VEL = 8.5
 
-DUCK_IMG = { DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
-JUMP_IMG = { DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
-RUN_IMG = { DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
+DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD, HAMMER_TYPE: DUCKING_HAMMER, HOURGLASS_TYPE: DUCKING}
+JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD, HAMMER_TYPE: JUMPING_HAMMER, HOURGLASS_TYPE: JUMPING}
+RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD,HAMMER_TYPE: RUNNING_HAMMER, HOURGLASS_TYPE: RUNNING}
 
 class Dinosaur(Sprite):
     def __init__(self):
@@ -25,10 +26,14 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.dino_duck = False
         self.setup_state()
+        self.jump_sound = JUMP_SOUND
+        self.jump_sound.set_volume(0.5)
 
     def setup_state(self):
         self.has_power_up = False
         self.shield = False
+        self.hammer = False
+        self.hourglass = False
         self.show_text = False
         self.power_up_time = 0
 
@@ -44,6 +49,7 @@ class Dinosaur(Sprite):
             self.dino_jump = True
             self.dino_run = False
             self.dino_duck = False  
+            self.jump_sound.play()
         elif user_input[pygame.K_DOWN] and not self.dino_jump or user_input[pygame.K_s] and not self.dino_jump:
             self.dino_jump = False
             self.dino_run = False
@@ -85,5 +91,5 @@ class Dinosaur(Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
-        
+    
 

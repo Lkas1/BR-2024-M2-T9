@@ -2,7 +2,7 @@ import pygame
 
 from dino_runner.utils.constants import SCREEN_HEIGHT, SCREEN_WIDTH
 
-FONT_COLOR = ('Black')
+FONT_COLOR = ('skyblue3')
 FONT_SIZE = 22
 FONT_STYLE = "freesansbold.ttf"
 

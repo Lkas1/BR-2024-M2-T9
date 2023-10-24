@@ -18,7 +18,7 @@ RUNNING = [
 
 RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Shield.png")),
 ]
 
 RUNNING_HAMMER = [
@@ -57,17 +57,33 @@ LARGE_CACTUS = [
 ]
 
 BIRD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat4.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat5.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bat6.png")),
 ]
 
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
+CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Background/cloud.png'))
+BG = pygame.image.load(os.path.join(IMG_DIR, 'Background/bg.png'))
+MOON = pygame.image.load(os.path.join(IMG_DIR, 'Background/moon.png'))
+CLOUD2 = pygame.image.load(os.path.join(IMG_DIR, 'Background/cloud2.png'))
+GROUND = pygame.image.load(os.path.join(IMG_DIR, 'Background/ground.png'))
+
+#BG_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/BackgroundMusic.ogg')
+#GAMEOVER_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/GameOver.ogg')
+#MENU_MUSIC = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/MenuMusic.ogg')
+#BEEP = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/Beep.ogg')
+#JUMP_SOUND = pygame.mixer.Sound('dino_runner/assets/SoundsAndMusics/JumpSound.ogg')
+
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
-
-BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
+HOURGLASS = pygame.image.load(os.path.join(IMG_DIR, 'Other/hourglass.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
+HOURGLASS_TYPE = "hourglass"
